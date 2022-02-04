@@ -66,10 +66,25 @@ namespace MVVM_WPF.ViewModel
             }
         }
         #endregion //BOOL Propertys
+        #region INotyfyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion //INotyfyPropertyChanged
+        public ObservableCollection<User> Users
+        {
+            get { return _UsersList; }
+            set
+            {
+                if (value != _UsersList)
+                {
+                    _UsersList = value;
+                    NotifyPropertyChanged();
+                }
+
+            }
         }
         public UserViewModel()
         {
@@ -90,20 +105,8 @@ namespace MVVM_WPF.ViewModel
             DescendingFirstNameClicked = new RelayCommand(OrderByDescendingFirstName);
         }
 
-        public ObservableCollection<User> Users
-        {
-            get { return _UsersList; }
-            set 
-            { 
-                if (value != _UsersList)
-                {
-                    _UsersList = value;
-                    NotifyPropertyChanged();
-                }
-              
-            }
-        }
-        #region OrderBy Methods
+       
+        #region OrderBy Functions
         private void OrderByUserId(object parameter)
         {
             AscUserIdIsChecked = true;
@@ -128,7 +131,7 @@ namespace MVVM_WPF.ViewModel
             DescFirstNameIsChecked = true;
             Users = new ObservableCollection<User>(Users.OrderByDescending(x => x.FirstName));
         }
-        #endregion //OrderBy Methods
+        #endregion //OrderBy Functions
         #region ICommand 
         private ICommand mUpdater;
 
@@ -151,8 +154,6 @@ namespace MVVM_WPF.ViewModel
         }
         private class Updater : ICommand
         {
-            #region ICommand Members  
-
             public bool CanExecute(object parameter)
             {
                 return true;
@@ -165,9 +166,8 @@ namespace MVVM_WPF.ViewModel
 
             }
 
-            #endregion
         }
       
-        #endregion
+        #endregion //ICommand
     }
 }
