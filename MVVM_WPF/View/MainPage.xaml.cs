@@ -24,5 +24,6 @@ namespace MVVM_WPF.View
             InitializeComponent();
            
         }
+
     }
 }

@@ -17,13 +17,39 @@
         </Grid.RowDefinitions>
         <ListView Name="UserGrid" Grid.Row="1" Margin="4,178,12,13"  ItemsSource="{Binding Users}"  >
             <ListView.View>
-                <GridView x:Name="grdTest">
-                    <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"  Width="50"/>
-                    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}"  Width="80" />
-                    <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}" Width="100" />
-                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" Width="80" />
-                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" Width="80" />
-                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" Width="100" />
+                <GridView x:Name="grdTest" AllowsColumnReorder="True" >
+                    <GridViewColumn DisplayMemberBinding="{Binding UserId}"  Width="50">
+                        <GridViewColumnHeader>UserId
+                            <GridViewColumnHeader.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Ascending" Command="{Binding AscendingUserIdClicked}" IsChecked="{Binding AscUserIdIsChecked}"/>
+                                    <MenuItem Header="Descending" Command="{Binding DescendingUserIdClicked}" IsChecked="{Binding DescUserIdIsChecked}"/>
+                                </ContextMenu>
+                            </GridViewColumnHeader.ContextMenu>
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn  DisplayMemberBinding="{Binding FirstName}"  Width="80" >
+                        <GridViewColumnHeader>First Name
+                            <GridViewColumnHeader.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Ascending" Command="{Binding AscendingFirstNameClicked}" IsChecked="{Binding AscFirstNameIsChecked}"/>
+                                    <MenuItem Header="Descending" Command="{Binding DescendingFirstNameClicked}" IsChecked="{Binding DescFirstNameIsChecked}"/>
+                                </ContextMenu>
+                            </GridViewColumnHeader.ContextMenu>
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}" Width="100" >
+                        
+                    </GridViewColumn>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" Width="80" >
+                        
+                    </GridViewColumn>
+                    <GridViewColumn Header="State" DisplayMemberBinding="{Binding State}" Width="80" >
+                        
+                    </GridViewColumn>
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" Width="100" >
+                        
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
