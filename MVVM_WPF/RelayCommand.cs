@@ -11,9 +11,6 @@ namespace MVVM_WPF
     {
         Action<object> _execteMethod;
       
-
-       
-
         public RelayCommand(Action<object> execteMethod)
         {
             _execteMethod = execteMethod;
