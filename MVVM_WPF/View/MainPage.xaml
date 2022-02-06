@@ -71,10 +71,8 @@
                 Command="{Binding Path=UpdateCommad}"  />
         <Button Content="Add new User" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="310,80,0,0" Name="btnAdd"   
                 VerticalAlignment="Top" Width="141"  
-                Command="{Binding AddNewUserCommand}" Visibility="{Binding IsVisibleNewUserBTN}" />
-        <Button Content="Add" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="310,120,0,0"  
-                VerticalAlignment="Top" Width="141"  
-                Command="{Binding AddCommand}" Visibility="{Binding IsVisible}" />
+                Command="{Binding AddNewUserCommand}"  />
+      
         <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="80,143,0,0" x:Name="txtCity" VerticalAlignment="Top" Width="178" Text="{Binding SelectedItem.City , ElementName=UserGrid}" />
         <Label Content="Country" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,141,0,0" x:Name="label2_Copy" VerticalAlignment="Top" />
         <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="80,88,0,0" x:Name="txtCountry" VerticalAlignment="Top" Width="178" Text="{Binding SelectedItem.Country, ElementName=UserGrid}" />
@@ -82,17 +80,6 @@
         <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="80,115,0,0" x:Name="txtSTate" VerticalAlignment="Top" Width="178" Text="{Binding SelectedItem.State, ElementName=UserGrid}" />
         <Label Content="State" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,113,0,0" x:Name="label2_Copy2" VerticalAlignment="Top" />
         
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,7,0,0"  VerticalAlignment="Top" Width="178" Text="{Binding UserIdAdd}" Visibility ="{Binding IsVisible}"/>
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,35,0,0"  VerticalAlignment="Top" Width="178" Text="{Binding FirstNameAdd}" Visibility ="{Binding IsVisible}" />
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,62,0,0"  VerticalAlignment="Top" Width="178" Text="{Binding LastNameAdd}" Visibility ="{Binding IsVisible}" />
-        <Label Content="UserId" Grid.Row="1" HorizontalAlignment="Left" Margin="510,12,0,274" Visibility ="{Binding IsVisible}" />
-        <Label Content="Last Name" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="510,60,0,0"  VerticalAlignment="Top" Visibility ="{Binding IsVisible}" />
-        <Label Content="First Name" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="510,35,0,0"  VerticalAlignment="Top" Visibility ="{Binding IsVisible}"/>
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,143,0,0"  VerticalAlignment="Top" Width="178" Text="{Binding CityAdd}" Visibility ="{Binding IsVisible}" />
-        <Label Content="Country" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="510,141,0,0"  VerticalAlignment="Top" Visibility ="{Binding IsVisible}" />
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,88,0,0" VerticalAlignment="Top" Width="178" Text="{Binding CountryAdd}" Visibility ="{Binding IsVisible}"/>
-        <Label Content="City" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="510,86,0,0"  VerticalAlignment="Top" Visibility ="{Binding IsVisible}"/>
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="580,115,0,0"  VerticalAlignment="Top" Width="178" Text="{Binding StateAdd}" Visibility ="{Binding IsVisible}"/>
-        <Label Content="State" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="510,113,0,0" VerticalAlignment="Top" Visibility ="{Binding IsVisible}" />
+       
     </Grid>
 </Window>

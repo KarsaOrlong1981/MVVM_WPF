@@ -15,58 +15,12 @@ namespace MVVM_WPF.ViewModel
 {
     class UserViewModel : UsersCollection, INotifyPropertyChanged
     {
-        private Visibility isVisisble, isVisibleNewUserBTN;
+      
         private  bool ascUserIdIsChecked ,descUserIdIsChecked, ascFirstNameIsChecked, 
                       descFirstNameIsChecked, ascLastNameIsChecked, descLastNameIsChecked;
-        private int userIdAdd;
-        private string firstNameAdd, lastNameAdd, cityAdd, countryAdd, stateAdd;
-        public Visibility IsVisible
-        {
-            get { return isVisisble; }
-            set { isVisisble = value; NotifyPropertyChanged(); }
-        }
-        public Visibility IsVisibleNewUserBTN
-        {
-            get { return isVisibleNewUserBTN; }
-            set { isVisibleNewUserBTN = value; NotifyPropertyChanged(); }
-        }
-        #region Propertys UserViewModel
-        public int UserIdAdd
-        {
-            get { return userIdAdd; }
-            set
-            {
-                userIdAdd = value;
-                NotifyPropertyChanged();
-            }
-        }
-        public string FirstNameAdd
-        {
-            get { return firstNameAdd; }
-            set { firstNameAdd = value; NotifyPropertyChanged(); }
-        }
-        public string LastNameAdd
-        {
-            get { return lastNameAdd; }
-            set { lastNameAdd = value; NotifyPropertyChanged(); }
-        }
-        public string CityAdd
-        {
-            get { return cityAdd; }
-            set { cityAdd = value; NotifyPropertyChanged(); }
-        }
-        public string CountryAdd
-        {
-            get { return countryAdd; }
-            set { countryAdd = value; NotifyPropertyChanged(); }
-        }
-        public string StateAdd
-        {
-            get { return stateAdd; }
-            set { stateAdd = value; NotifyPropertyChanged(); }
-        }
 
-        #endregion //Propertys
+
+        User user;
 
         #region BOOL Propertys
        
@@ -156,75 +110,32 @@ namespace MVVM_WPF.ViewModel
         {
             
             Users = GetTemplateUserList();
-            UserIdAdd = 1;
-            isVisisble = Visibility.Hidden ;
-            isVisibleNewUserBTN = Visibility.Visible;
+
+            ICommandsInit();
+
+        }
+        public UserViewModel(ObservableCollection<User> users)
+        {
+           
+            Users = users;
+            ICommandsInit();
+        }
+       
+        private void ICommandsInit()
+        {
             AscendingUserIdClicked = new RelayCommand(OrderByUserId);
             DescendingUserIdClicked = new RelayCommand(OrderByDescendingUserId);
             AscendingFirstNameClicked = new RelayCommand(OrderByFirstName);
             DescendingFirstNameClicked = new RelayCommand(OrderByDescendingFirstName);
             AscendingLastNameClicked = new RelayCommand(OrderByLastName);
             DescendingLastNameClicked = new RelayCommand(OrderByDescendingLastName);
-            AddCommand = new RelayCommand(Add);
-            AddNewUserCommand = new RelayCommand(AddnewUser);
 
-        }
-        private bool CheckIdExisting()
-        {
-            bool isIDExists = false;
-            foreach (var item in Users)
-            {
-                if (item.UserId == UserIdAdd)
-                {
-                    isIDExists = true;
-                    break;
-                }
-            }
-            return isIDExists;
+            AddNewUserCommand = new RelayCommand(AddnewUser);
         }
         private void AddnewUser(object parameter)
         {
-            IsVisible = Visibility.Visible;
-            IsVisibleNewUserBTN = Visibility.Hidden;
-        }
-        private void Add(object parameter)
-        {
-            bool isAnyTBEmpty = false;
-            bool isIDExists = false;
-            
-            if (FirstNameAdd == null || LastNameAdd == null || CityAdd == null || CountryAdd == null || StateAdd == null)
-            {
-                isAnyTBEmpty=true;
-            }
-            if (isAnyTBEmpty == false)
-            {
-                if (isIDExists = CheckIdExisting() == false)
-                {
-                    User user = new User();
-                    user.UserId = UserIdAdd;
-                    user.FirstName = FirstNameAdd;
-                    user.LastName = LastNameAdd;
-                    user.City = CityAdd;
-                    user.Country = CountryAdd;
-                    user.State = StateAdd;
-                    Users.Add(user);
-                }
-                else
-                {
-                    int nextID = Users.Count - 1;
-                    ObservableCollection<User> getNextIdList;
-                    getNextIdList = new ObservableCollection<User>( Users.OrderBy(x => x.UserId));
-                    nextID = getNextIdList[nextID].UserId + 1;
-                    
-                    MessageBox.Show("Diese ID Existiert bereits. die nächste Id wäre " + nextID + ".", "Users", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-              
-            }
-            else
-            {
-                MessageBox.Show("Es darf kein Feld leer bleiben.", "Users", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-           
+           AddUserWindow call = new AddUserWindow();
+            call.Show();
         }
         #region OrderBy Functions
         private void OrderByUserId(object parameter)
@@ -274,7 +185,7 @@ namespace MVVM_WPF.ViewModel
         public ICommand AscendingLastNameClicked { get; set; }
        
         public ICommand DescendingLastNameClicked { get; set; }
-        public ICommand AddCommand { get; set; }
+       
         public ICommand AddNewUserCommand { get; set; }
         public ICommand UpdateCommand
         {
