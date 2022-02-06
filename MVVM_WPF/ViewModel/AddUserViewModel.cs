@@ -64,7 +64,7 @@ namespace MVVM_WPF.ViewModel
         #endregion //INotyfyPropertyChanged
         public AddUserViewModel()
         {
-            UserIdAdd = 1;
+            UserIdAdd = GetNextID();
            
             AddCommand = new RelayCommand(Add);
         }
@@ -104,7 +104,6 @@ namespace MVVM_WPF.ViewModel
                     user.Country = CountryAdd;
                     user.State = StateAdd;
                     Users.Add(user);
-                    ClearTextBoxes();
                     UserViewModel userViewModel = new UserViewModel(Users);
                     CloseAction();
                 }
@@ -130,16 +129,7 @@ namespace MVVM_WPF.ViewModel
             nextID = getNextIdList[nextID].UserId + 1;
             return nextID;
         }
-        private void ClearTextBoxes()
-        {
-
-            UserIdAdd = GetNextID();
-            FirstNameAdd = null;
-            LastNameAdd = null;
-            CityAdd = null;
-            CountryAdd = null;
-            StateAdd = null;
-        }
+       
         public ICommand AddCommand { get; set; }
     }
 }

@@ -19,9 +19,6 @@ namespace MVVM_WPF.ViewModel
         private  bool ascUserIdIsChecked ,descUserIdIsChecked, ascFirstNameIsChecked, 
                       descFirstNameIsChecked, ascLastNameIsChecked, descLastNameIsChecked;
 
-
-        User user;
-
         #region BOOL Propertys
        
         public bool AscUserIdIsChecked
@@ -99,7 +96,7 @@ namespace MVVM_WPF.ViewModel
         #endregion //BOOL Propertys
         #region INotyfyPropertyChanged
         public new event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        protected override void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -110,7 +107,6 @@ namespace MVVM_WPF.ViewModel
         {
             
             Users = GetTemplateUserList();
-
             ICommandsInit();
 
         }

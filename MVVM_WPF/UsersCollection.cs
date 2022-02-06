@@ -14,7 +14,7 @@ namespace MVVM_WPF
     {
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -33,7 +33,7 @@ namespace MVVM_WPF
                 if (value != _users)
                 {
                     _users = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("Users");
                 }
 
             }
